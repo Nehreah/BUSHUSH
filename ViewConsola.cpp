@@ -94,7 +94,6 @@ void ViewConsola::mostrarMapa(Tablero& datosMapa){
   std::vector<Pasajero*>& filaPasajeros = datosMapa.getFilaPasajeros();
   std::vector<Vehiculo*>& zonaRecogida = datosMapa.getZonaRecogida();
   std::vector<std::vector<Vehiculo*>>& zonaCoches = datosMapa.getZonaCoches();
-  
   //puntuacion
   std::cout<<"Número de peatones por recoger: "<<filaPasajeros.size()<<std::endl<<std::endl;
   
@@ -143,10 +142,10 @@ void ViewConsola::mostrarMapa(Tablero& datosMapa){
       else{
           int tamCoche = auxRecogida->getTamano();
           if(j < tamCoche){
-          char orientacion = auxRecogida->getOrientacion();
+          int cupo = (auxRecogida->getTamano()*2)-auxRecogida->getSizeSillas();
           char color = auxRecogida->getColor();
           std::string coche;
-          coche = orientacion;
+          coche = std::to_string(cupo);
           coche += color;
           std::cout<<"["<<coche<<"]";
           }
@@ -155,7 +154,16 @@ void ViewConsola::mostrarMapa(Tablero& datosMapa){
           }
           }
       }
-    std::cout<<std::endl;
+      if (j == 0  ){
+        std::cout<<"     Nomenclatura: [Cupo, Color]";
+      }
+      else if(j == 1 ){
+        std::cout<<"     Ejemplo: [6B] es: Vehículo blue con 6 cupos libres";
+      }
+      else if(j == 2 ){
+        std::cout<<"     Colores: B = Blue; R = Red; Y = Yellow";
+      }
+      std::cout<<std::endl;
   }
  
  
