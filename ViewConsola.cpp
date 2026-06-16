@@ -158,10 +158,10 @@ void ViewConsola::mostrarMapa(Tablero& datosMapa){
         std::cout<<"     Nomenclatura: [Cupo, Color]";
       }
       else if(j == 1 ){
-        std::cout<<"     Ejemplo: [6B] es: Vehículo blue con 6 cupos libres";
+        std::cout<<"     Colores: B = Blue; R = Red; Y = Yellow";
       }
       else if(j == 2 ){
-        std::cout<<"     Colores: B = Blue; R = Red; Y = Yellow";
+        std::cout<<"     Ejemplo: [6B] es: Vehículo blue con 6 cupos libres";
       }
       std::cout<<std::endl;
   }
@@ -198,15 +198,15 @@ void ViewConsola::mostrarMapa(Tablero& datosMapa){
       }
     }
       std::vector<std::string> vectorDir ={
-        "                      ▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌",
-        "  ↑                                      1.Arriba                     ",
-        "  F                                       ↑↑↑↑↑↑↑                     ",
-        "  I                            ←←←←←←←←←              →→→→→→→→        ",
-        "  L                          3.Izquierda             4.Derecha        ",
-        "  A                                                                   ",
-        "  S                                       ↓↓↓↓↓↓                      ",
-        "  ↓                                      2.Abajo                      ",
-        "                      ▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌",
+        "                                                                    ▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌",
+        "  ↑                                                                                    1.Arriba                     ",
+        "  F                                                                                     ↑↑↑↑↑↑↑                     ",
+        "  I    Nomenclatura: [Dirección, Color]                                      ←←←←←←←←←              →→→→→→→→        ",
+        "  L    Ejemplo: [vR] es: Vehículo rojo hacia abajo                         3.Izquierda             4.Derecha        ",
+        "  A                                                                                                                 ",
+        "  S                                                                                     ↓↓↓↓↓↓                      ",
+        "  ↓                                                                                    2.Abajo                      ",
+        "                                                                    ▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌",
         "",
         ""};
     std::cout<<"||"<<vectorFilas[i]<<vectorDir[i];
