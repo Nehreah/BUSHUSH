@@ -53,7 +53,10 @@ ViewConsola();
 
 void mostrarMenu() override;
 void mostrarNivel(int nivel) override;
-void mostrarMapa(Tablero& datosMapa) override;
+void mostrarBarraMapa() override;
+void mostrarZonaPasajeros(Tablero& datosMapa) override;
+void mostrarZonaAbordaje(Tablero& datosMapa) override;
+void mostrarZonaCoches(Tablero& datosMapa) override;
 void pantallaDerrota() override;
 void pantallaVictoria() override;
 

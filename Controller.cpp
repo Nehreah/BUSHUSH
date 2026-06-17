@@ -46,9 +46,13 @@ bool Controller::iniciarJuego(){
   //Muestra un titulo de menú.
   vista.mostrarMenu();
   //elegir el nivel 
-  std::cout<<"¿Ingrese el número del nivel desea cursar?: \n1.Nivel uno \n2.Nivel dos \n3.Nivel tres. \n0. Ingrese cero para cerrar."<<std::endl<<std::endl;
+  vista.mostrarBarraMapa();
+  std::cout<<"                                                                ¿Ingrese el número del nivel desea cursar?: \n                                                                1.Nivel uno \n                                                                2.Nivel dos \n                                                                3.Nivel tres. \n                                                                0. Ingrese cero para cerrar."<<std::endl<<std::endl;
+  vista.mostrarBarraMapa();
   while(!(std::cin>>nivel) || nivel < 0 || nivel >3){
-    std::cout<<"¿Ingrese un número válido del nivel desea cursar?: \n1.Nivel uno \n2.Nivel dos \n3.Nivel tres \n0. Ingrese cero para cerrar."<<std::endl<<std::endl;
+    vista.mostrarBarraMapa();
+    std::cout<<"                                                                ¿Ingrese un número válido del nivel desea cursar?: \n                                                                1.Nivel uno \n                                                                2.Nivel dos \n                                                                3.Nivel tres \n                                                                0. Ingrese cero para cerrar."<<std::endl<<std::endl;
+    vista.mostrarBarraMapa();
     std::cin.clear();
     std::cin.ignore();
   }
@@ -64,15 +68,23 @@ bool Controller::iniciarJuego(){
 
   //mostrar mapa
   vista.mostrarNivel(nivel);
-  vista.mostrarMapa(model.getTablero());
+  vista.mostrarBarraMapa();
+  vista.mostrarZonaPasajeros(model.getTablero());
+  vista.mostrarZonaAbordaje(model.getTablero());
+  vista.mostrarZonaCoches(model.getTablero());
+  vista.mostrarBarraMapa();
   return true;
 }
           
 
 void Controller::mostrarMapa(){
- //mostrar mapa
- vista.mostrarNivel(nivel);
- vista.mostrarMapa(model.getTablero());
+  //mostrar mapa
+  vista.mostrarNivel(nivel);
+  vista.mostrarBarraMapa();
+  vista.mostrarZonaPasajeros(model.getTablero());
+  vista.mostrarZonaAbordaje(model.getTablero());
+  vista.mostrarZonaCoches(model.getTablero());
+  vista.mostrarBarraMapa();  
 }
 
 //pide coordenadas, las verifica, pide dirección y sea una entrada válida. Verifica la colisión del vehículo, de no haber entra en un bucle que mientras mover vehículo sea true verifica sus coordenadas más actuales y se mueve.
@@ -97,12 +109,22 @@ bool Controller::movimientosVehiculos(){
       if (carro->getPosX() == 0 ||carro->getPosY() == 0 || carro->getPosX()== model.getTablero().getFilas()-1 ||carro->getPosY()== model.getTablero().getColumnas()-1){
         tam -= 1;
       }
+          //mostrar mapa
           vista.mostrarNivel(nivel);
-          vista.mostrarMapa(model.getTablero());
+          vista.mostrarBarraMapa();
+          vista.mostrarZonaPasajeros(model.getTablero());
+          vista.mostrarZonaAbordaje(model.getTablero());
+          vista.mostrarZonaCoches(model.getTablero());
+          vista.mostrarBarraMapa();
           std::this_thread::sleep_for(std::chrono::milliseconds(300));    
     }
-          vista.mostrarNivel(nivel);
-          vista.mostrarMapa(model.getTablero());    
+    //mostrar mapa
+    vista.mostrarNivel(nivel);
+    vista.mostrarBarraMapa();
+    vista.mostrarZonaPasajeros(model.getTablero());
+    vista.mostrarZonaAbordaje(model.getTablero());
+    vista.mostrarZonaCoches(model.getTablero()); 
+    vista.mostrarBarraMapa();
    }
    return true;
 }
@@ -114,8 +136,13 @@ void Controller::pushPasajerosBus(){
   //verifica que el primero peatón en la fila de pasajeros, pueda ingresar a un vehículo de los 4 que hay en la zona de recogida de su mismo color y que tenga espacio dentro de el, sino es así rompe el ciclo.
   while(model.verificarPushPasajeros()){
     model.pushPasajerosBus();
+    //mostrar mapa
     vista.mostrarNivel(nivel);
-    vista.mostrarMapa(model.getTablero());
+    vista.mostrarBarraMapa();
+    vista.mostrarZonaPasajeros(model.getTablero());
+    vista.mostrarZonaAbordaje(model.getTablero());
+    vista.mostrarZonaCoches(model.getTablero());
+    vista.mostrarBarraMapa();
     std::this_thread::sleep_for(std::chrono::milliseconds(400));
   }
 }
@@ -123,8 +150,13 @@ void Controller::pushPasajerosBus(){
 //se supone que debe verificar si los buses están llenos o no en los 4 puestos donde se recogen pasajeros, y si están llenos los manda a "Zona victoria" donde irán los buses llenos.
 void Controller::verificarZonaRecogida(){
   model.verificarZonaRecogida();
+  //mostrar mapa
   vista.mostrarNivel(nivel);
-  vista.mostrarMapa(model.getTablero());
+  vista.mostrarBarraMapa();
+  vista.mostrarZonaPasajeros(model.getTablero());
+  vista.mostrarZonaAbordaje(model.getTablero());
+  vista.mostrarZonaCoches(model.getTablero());
+  vista.mostrarBarraMapa();
 }
 
 
@@ -140,8 +172,14 @@ bool Controller::verificarDerrota(){
 bool Controller::verificarVictoria(){
   std::vector<Pasajero*> filaPasajeros = model.getTablero().getFilaPasajeros();
   if (filaPasajeros.size() == 0){
+    //mostrar mapa
     vista.mostrarNivel(nivel);
-    vista.mostrarMapa(model.getTablero());
+    vista.mostrarBarraMapa();
+    vista.mostrarZonaPasajeros(model.getTablero());
+    vista.mostrarZonaAbordaje(model.getTablero());
+    vista.mostrarZonaCoches(model.getTablero());
+    vista.mostrarBarraMapa();
+    std::this_thread::sleep_for(std::chrono::milliseconds(400));
     vista.pantallaVictoria();
     return true;
   }

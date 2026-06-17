@@ -53,7 +53,10 @@ View(){};
 
 virtual void mostrarMenu() = 0;
 virtual void mostrarNivel(int nivel) = 0;
-virtual void mostrarMapa(Tablero& datosMapa) = 0;
+virtual void mostrarBarraMapa() = 0;
+virtual void mostrarZonaPasajeros(Tablero& datosMapa) = 0;
+virtual void mostrarZonaAbordaje(Tablero& datosMapa) = 0;
+virtual void mostrarZonaCoches(Tablero& datosMapa) = 0;
 virtual void pantallaDerrota() = 0;
 virtual void pantallaVictoria() = 0;
 
