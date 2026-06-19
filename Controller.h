@@ -51,6 +51,7 @@ class Controller{
 private:
 
 int nivel;
+std::vector<int> nivelesRealizados;
 View& vista;
 Model& model;
 

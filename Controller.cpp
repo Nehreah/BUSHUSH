@@ -29,6 +29,7 @@
 #include <thread>
 #include <chrono>
 #include <string>
+#include <vector>
 
 /**
 *@brief Constructor de la clase Controller
@@ -36,6 +37,7 @@
 *@param auxVista referencia al objeto vista del
 **/
 Controller::Controller(Model& auxModelo, View& auxVista): vista(auxVista), model(auxModelo){
+  int nivel = -1;
 }
 
 
@@ -50,34 +52,44 @@ bool Controller::iniciarJuego(int contador){
   vista.mostrarMenu();
   //elegir el nivel 
   vista.mostrarBarraMapa();
-  std::cout<<R"(
-                                                                                       Ingrese el número de estación que desea evacuar
-                                                                                      ▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌
-                                                                                                      1. Estación de arte
-                                                                                                      2. Casino
-                                                                                                      3. Unidad médica
-                                                                                                      0. Huir al centro galáctico
-                                                                                      ▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌
-)"<<std::endl<<std::endl;
+  std::vector<std::string> menu = {"                                                                                       Ingrese el número de estación que desea evacuar",
+  "                                                                                      ▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌",
+  "                                                                                                      1. Estación de arte",
+  "                                                                                                      2. Casino",
+  "                                                                                                      3. Unidad médica",
+  "                                                                                                      0. Huir al centro galáctico",
+  "                                                                                      ▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌"};
+  
+  if(!(nivelesRealizados.empty())){
+    for (int i = 0; i < nivelesRealizados.size(); i++){
+      menu.erase(menu.begin()+nivelesRealizados[i]);
+    }
+  }
+  for (int i = 0; i < menu.size(); i++){
+    std::cout<<menu[i]<<std::endl;  
+  }
+
   vista.mostrarBarraMapa();
   std::cout<<"                                                                                                ";
   while(!(std::cin>>nivel) || nivel < 0 || nivel >3){
     vista.mostrarBarraMapa();
-  std::cout<<R"(
-                                                                                       Ingrese el número de estación que desea evacuar
-                                                                                      ▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌
-                                                                                                      1. Estación de arte
-                                                                                                      2. Casino
-                                                                                                      3. Unidad médica
-                                                                                                      0. Huir al centro galáctico
-                                                                                      ▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌
-)"<<std::endl<<std::endl;
+    std::vector<std::string> menu = {"                                                                                       Ingrese el número de estación que desea evacuar",
+    "                                                                                      ▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌",
+    "                                                                                                      1. Estación de arte",
+    "                                                                                                      2. Casino",
+    "                                                                                                      3. Unidad médica",
+    "                                                                                                      0. Huir al centro galáctico",
+    "                                                                                      ▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌"};
+  
+    for (int i = 0; i < menu.size(); i++){
+      std::cout<<menu[i]<<std::endl;  
+    }    
     vista.mostrarBarraMapa();
     std::cout<<"                                                                                                ";
     std::cin.clear();
     std::cin.ignore();
   }
-
+  nivelesRealizados.push_back(nivel+1);
   if(nivel == 0){
     return false;
   }
