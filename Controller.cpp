@@ -73,6 +73,7 @@ bool Controller::iniciarJuego(int contador){
   std::cout<<"                                                                                                ";
     
   //elegir el nivel 
+  
   while(!(std::cin>>nivel) || nivel < 0 || nivel >3 ){
     
     vista.mostrarMenu();  
@@ -91,7 +92,8 @@ bool Controller::iniciarJuego(int contador){
     std::cin.clear();
     std::cin.ignore();
   }//end while elegir nivel
-
+  
+  
   
   nivelesRealizados.push_back(nivel);
   if(nivel == 0){
